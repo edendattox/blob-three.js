@@ -1,0 +1,318 @@
+*, :after, :before {
+  box-sizing: border-box;
+}
+
+:root {
+  font-size: 15px;
+}
+
+body {
+  --color-text: #d8d8d8;
+  --color-bg: #060606;
+  --color-link: #fff;
+  --color-link-hover: #fff;
+  --color-line: #524d4961;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #fff;
+  margin: 0;
+  font-family: termina, sans-serif;
+}
+
+.demo-2 {
+  --color-text: #000;
+  --color-bg: #c7c7c7;
+}
+
+.js .loading:before, .js .loading:after {
+  content: "";
+  z-index: 1000;
+  position: fixed;
+}
+
+.js .loading:before {
+  width: 100%;
+  height: 100%;
+  background: var(--color-bg);
+  top: 0;
+  left: 0;
+}
+
+.js .loading:after {
+  width: 60px;
+  height: 60px;
+  opacity: .4;
+  background: var(--color-link);
+  border-radius: 50%;
+  margin: -30px 0 0 -30px;
+  animation: loaderAnim .7s linear infinite alternate forwards;
+  top: 50%;
+  left: 50%;
+}
+
+@keyframes loaderAnim {
+  to {
+    opacity: 1;
+    transform: scale3d(.5, .5, 1);
+  }
+}
+
+a {
+  color: var(--color-link);
+  outline: none;
+  text-decoration: underline;
+}
+
+a:hover, a:focus {
+  color: var(--color-link-hover);
+  outline: none;
+  text-decoration: none;
+}
+
+main {
+  text-align: center;
+  padding: 2rem;
+}
+
+main:before {
+  content: "";
+  height: 300%;
+  opacity: .5;
+  width: 300%;
+  pointer-events: none;
+  background-image: url("noise.e6772cff.png");
+  animation: grain 8s steps(10, end) infinite;
+  position: fixed;
+  top: -100%;
+  left: -50%;
+}
+
+@keyframes grain {
+  0%, 100% {
+    transform: translate(0);
+  }
+
+  10% {
+    transform: translate(-5%, -10%);
+  }
+
+  20% {
+    transform: translate(-15%, 5%);
+  }
+
+  30% {
+    transform: translate(7%, -25%);
+  }
+
+  40% {
+    transform: translate(-5%, 25%);
+  }
+
+  50% {
+    transform: translate(-15%, 10%);
+  }
+
+  60% {
+    transform: translate(15%);
+  }
+
+  70% {
+    transform: translate(0%, 15%);
+  }
+
+  80% {
+    transform: translate(3%, 35%);
+  }
+
+  90% {
+    transform: translate(-10%, 10%);
+  }
+}
+
+.logo {
+  grid-area: logo;
+  place-self: center;
+  font-size: 3rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.page-title {
+  grid-area: pagetitle;
+  margin: 0;
+  padding: 1rem 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.page-title div {
+  clip-path: polygon(0 0, var(--clip) 0, var(--clip) 100%, 0% 100%);
+}
+
+.demos {
+  grid-area: demos;
+}
+
+.links {
+  grid-area: links;
+  padding-top: 1rem;
+}
+
+.demos div:not(:first-child), .links div:not(:first-child) {
+  margin-left: 1rem;
+}
+
+.frame__demo {
+  display: inline-block;
+}
+
+.frame__demo--current {
+  opacity: .8;
+  text-decoration: none;
+}
+
+.title {
+  text-indent: -.9vw;
+  grid-area: title;
+  margin: 0;
+  font-family: dystopian, sans-serif;
+  font-size: 11.25vw;
+  font-weight: 700;
+  line-height: .9;
+}
+
+.subtitle {
+  text-indent: -.4vw;
+  grid-area: subtitle;
+  margin: .5rem 0 0;
+  font-size: 4vw;
+  font-weight: 200;
+  line-height: 1;
+}
+
+.menu {
+  grid-area: menu;
+  align-self: start;
+}
+
+.menu__inner {
+  padding: 1rem 0;
+  font-family: dystopian, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+  display: block;
+}
+
+.content {
+  grid-area: content;
+  margin: 0;
+  padding: 2rem 0;
+  font-size: clamp(1rem, 2vh, 3rem);
+}
+
+.content span {
+  clip-path: polygon(0 0, 100% 0, 100% var(--clip), 0% var(--clip));
+}
+
+.play {
+  cursor: default;
+  grid-area: play;
+  place-self: center;
+  font-size: 12vw;
+  display: block;
+}
+
+.year {
+  grid-area: year;
+}
+
+.credits--site {
+  grid-area: credits-1;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.credits--author {
+  grid-area: credits-2;
+}
+
+.credits--author div {
+  clip-path: polygon(0 0, var(--clip) 0, var(--clip) 100%, 0% 100%);
+}
+
+@media screen and (min-width: 60em) {
+  main {
+    text-align: left;
+    height: 100vh;
+    grid-template: "logo . . pagetitle links" 4rem
+                   "logo . . demos ." 4rem
+                   ". . . title title" min-content
+                   ". . . . subtitle" min-content
+                   ". menu . content play" 1fr
+                   "year . credits-1 credits-2 ." 2.5rem
+                   / 8rem 12vh 9rem 1fr 1fr;
+    padding: 0;
+    display: grid;
+    overflow: hidden;
+  }
+
+  .line {
+    position: relative;
+  }
+
+  .line:before {
+    content: "";
+    background: var(--color-line);
+    position: absolute;
+  }
+
+  .line--vertical:before {
+    width: 1px;
+    height: 500vh;
+    top: -250vh;
+    left: 0;
+  }
+
+  .line--horizontal:before {
+    width: 500vw;
+    height: 1px;
+    top: 0;
+    left: -250vw;
+  }
+
+  .content {
+    width: 90%;
+    padding: 0;
+  }
+
+  .menu__inner {
+    writing-mode: vertical-lr;
+    padding: 0;
+    font-size: 12vh;
+    transform: rotate(180deg);
+  }
+}
+
+.webgl {
+  z-index: -1;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.oh {
+  overflow: hidden;
+}
+
+.dib {
+  display: inline-block;
+}
+
+.db {
+  display: block;
+}
+
+/*# sourceMappingURL=index.66daa216.css.map */
